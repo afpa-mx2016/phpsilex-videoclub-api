@@ -1,0 +1,9 @@
+{
+    "require": {
+        "silex/silex": "2.0"
+    },
+    "scripts": {
+        "start": "php -S localhost:8000 -t web web/index.php",
+        "test": "phpunit"
+	}
+}
