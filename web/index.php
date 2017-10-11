@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 $app = new Silex\Application();
 $app['debug'] = true;
 
-$pdo = new PDO('mysql:dbname=video;host=localhost;charset=utf8', 'video_user', 'video_mdp', array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+$pdo = new PDO('mysql:dbname=video;host=localhost;charset=utf8', 'root', 'admin', array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 
 
 $app->get('/', function(){
@@ -38,11 +38,11 @@ $app->get('/films/', function(Request $request) use ($pdo){
 
 	$codeTypeFilm = $request->get('type_film');
 
-	$sql = "SELECT ID_FILM, TITRE_FILM, REF_IMAGE FROM film WHERE CODE_TYPE_FILM = :code ORDER BY annee_film ";
+	$sql = "SELECT ID_FILM, TITRE_FILM, REF_IMAGE FROM film  ORDER BY annee_film ";
 
 	$stmt = $pdo->prepare($sql);
 	//$stmt->debugDumpParams();
-	$stmt->bindParam(':code', $codeTypeFilm);
+	//$stmt->bindParam(':code', $codeTypeFilm);
 	$stmt->execute();
 
 	 // Generate an array of the required objects
