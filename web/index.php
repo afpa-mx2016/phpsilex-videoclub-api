@@ -37,10 +37,15 @@ $app->get('/typefilm/', function() use ($pdo){
 $app->get('/films/', function(Request $request) use ($pdo){
 
 	$codeTypeFilm = $request->get('type_film');
+	if (isset($codeTypeFilm)) {
+		$sql = "SELECT ID_FILM, TITRE_FILM, REF_IMAGE FROM film WHERE CODE_TYPE_FILM = :code ORDER BY annee_film ";
+		$stmt = $pdo->prepare($sql);
+		$stmt->bindParam(':code', $codeTypeFilm);
+	}else{
+		$sql = "SELECT ID_FILM, TITRE_FILM, REF_IMAGE FROM film  ORDER BY annee_film ";
+		$stmt = $pdo->prepare($sql);
+	}
 
-	$sql = "SELECT ID_FILM, TITRE_FILM, REF_IMAGE FROM film  ORDER BY annee_film ";
-
-	$stmt = $pdo->prepare($sql);
 	//$stmt->debugDumpParams();
 	//$stmt->bindParam(':code', $codeTypeFilm);
 	$stmt->execute();
