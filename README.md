@@ -16,11 +16,11 @@ Configurer l'url de connection dans le fichier `web/index.php`
 
 
 #démarrage
-`php -S 0.0.0.0:8000 -t web web/index.php`
+`php -S 0.0.0.0:8080 -t web web/index.php`
 
 #test des Web services
  - Hello world:
- `curl http://localhost:8000/`
+ `curl http://localhost:8080/`
 
  - Obtenir la liste des types de film
  `curl http://localhost:8080/typefilm/`
